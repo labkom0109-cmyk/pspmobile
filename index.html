@@ -9,7 +9,6 @@
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #0a1128 0%, #101f42 40%, #001233 100%);
-            --metal-border: linear-gradient(135deg, #60a5fa, #1d4ed8, #93c5fd, #1e40af);
             --glossy-card: linear-gradient(145deg, rgba(30, 58, 138, 0.45) 0%, rgba(15, 23, 42, 0.75) 100%);
             --glossy-input: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 58, 138, 0.3) 100%);
             --btn-glossy: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
@@ -33,7 +32,6 @@
             min-height: 100vh;
             padding: 20px;
             color: #f1f5f9;
-            overflow-x: hidden;
         }
 
         .container {
@@ -64,47 +62,43 @@
         }
 
         .logo-container {
-            position: relative;
             margin-bottom: 20px;
-            display: inline-block;
         }
 
         .logo-container img {
-            height: 90px;
+            height: 85px;
             width: auto;
-            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
-        }
-
-        .header {
-            margin-bottom: 30px;
+            filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
         }
 
         .header h2 {
             font-size: 26px;
             font-weight: 800;
-            letter-spacing: 0.5px;
             background: linear-gradient(180deg, #ffffff 0%, #a2d2ff 60%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 15px rgba(59, 130, 246, 0.4);
             margin-bottom: 6px;
         }
 
         .header p {
             color: #94a3b8;
             font-size: 14px;
-            letter-spacing: 0.3px;
+            margin-bottom: 20px;
         }
 
         .status-box {
-            font-size: 12px;
+            font-size: 13px;
             color: #60a5fa;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 600;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(96, 165, 250, 0.2);
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
@@ -112,14 +106,13 @@
             display: block;
             font-size: 13px;
             color: #cbd5e1;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
-            letter-spacing: 0.5px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             background: var(--glossy-input);
             border: 1px solid rgba(147, 197, 253, 0.3);
             border-radius: 12px;
@@ -127,7 +120,6 @@
             color: #ffffff;
             outline: none;
             box-shadow: inset 0 3px 6px rgba(0,0,0,0.7);
-            transition: all 0.3s ease;
         }
 
         .form-group input:focus {
@@ -137,23 +129,22 @@
 
         .btn-metallic {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             background: var(--btn-glossy);
             border: 1px solid #93c5fd;
             border-radius: 12px;
             color: #ffffff;
             font-size: 16px;
             font-weight: 800;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.6);
             transition: all 0.25s ease;
         }
 
         .btn-metallic:hover {
             background: var(--btn-glossy-hover);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.8);
             transform: translateY(-2px);
         }
 
@@ -161,27 +152,25 @@
             background: rgba(220, 38, 38, 0.3);
             border: 1px solid #f87171;
             color: #fca5a5;
-            padding: 14px;
+            padding: 12px;
             border-radius: 12px;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 20px;
             display: none;
-            backdrop-filter: blur(5px);
             font-weight: 600;
         }
 
         .result-card {
             display: none;
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.85);
             border: 1px solid rgba(96, 165, 250, 0.3);
             border-radius: 18px;
-            padding: 25px;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+            padding: 20px;
             text-align: left;
         }
 
         .result-item {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .result-label {
@@ -189,15 +178,13 @@
             color: #94a3b8;
             text-transform: uppercase;
             font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
+            letter-spacing: 0.5px;
         }
 
         .result-value {
-            font-size: 17px;
+            font-size: 16px;
             color: #f8fafc;
             font-weight: 700;
-            word-break: break-all;
         }
 
         .badge-kelas {
@@ -205,24 +192,17 @@
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             border: 1px solid #60a5fa;
             color: #ffffff;
-            padding: 5px 16px;
+            padding: 4px 14px;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
-            box-shadow: 0 3px 10px rgba(59, 130, 246, 0.5);
-            margin-top: 5px;
-        }
-
-        .btn-logout {
-            margin-top: 25px;
-            background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
-            border: 1px solid #94a3b8;
+            margin-top: 4px;
         }
 
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.3), transparent);
-            margin: 15px 0;
+            background: rgba(147, 197, 253, 0.2);
+            margin: 12px 0;
         }
     </style>
 </head>
@@ -230,15 +210,18 @@
 
 <div class="container">
     <div class="logo-container">
-        <img src="https://i.ibb.co/5R4Y4Y0/logo-smanu-kudus.png" alt="Logo SMA NU Al Ma'ruf Kudus">
+        <!-- Logo Sekolah dengan fallback otomatis -->
+        <img src="https://i.ibb.co/5R4Y4Y0/logo-smanu-kudus.png" 
+             onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg';" 
+             alt="Logo SMA NU Al Ma'ruf Kudus">
     </div>
 
     <div class="header">
-        <h2>Portal Siswa</h2>
+        <h2>Portal Akun Siswa</h2>
         <p>SMA NU Al Ma'ruf Kudus</p>
     </div>
 
-    <div id="statusBox" class="status-box">⏳ Memuat database sistem...</div>
+    <div id="statusBox" class="status-box">⏳ Memuat database siswa...</div>
 
     <!-- Form Login -->
     <div id="loginForm">
@@ -246,10 +229,10 @@
         
         <div class="form-group">
             <label for="nisnInput">Masukkan NISN Siswa</label>
-            <input type="text" id="nisnInput" placeholder="Contoh: 0085649162" autocomplete="off" maxlength="10">
+            <input type="text" id="nisnInput" placeholder="Contoh: 0085649162" autocomplete="off">
         </div>
 
-        <button class="btn-metallic" onclick="login()">Masuk Sekarang</button>
+        <button class="btn-metallic" onclick="login()">Cek Akun Saya</button>
     </div>
 
     <!-- Hasil Info Akun Siswa -->
@@ -265,29 +248,29 @@
         </div>
         <div class="divider"></div>
         <div class="result-item">
-            <div class="result-label">Username Login</div>
+            <div class="result-label">Username Login PSP</div>
             <div class="result-value" style="color: #60a5fa; font-family: monospace;" id="resUsername">-</div>
         </div>
         <div class="divider"></div>
         <div class="result-item">
-            <div class="result-label">Password Login (NISN)</div>
+            <div class="result-label">Password Login</div>
             <div class="result-value" style="color: #93c5fd; font-family: monospace;" id="resPassword">-</div>
         </div>
 
-        <button class="btn-metallic btn-logout" onclick="logout()">Keluar / Cek Lain</button>
+        <button class="btn-metallic" style="margin-top: 20px; background: #334155;" onclick="logout()">Kembali / Cari Lain</button>
     </div>
 </div>
 
 <script>
     let studentData = [];
 
-    // Mengambil file pspmobile.xlsx secara otomatis dari repositori
+    // Mengambil file pspmobile.xlsx otomatis dari repositori GitHub
     window.addEventListener('DOMContentLoaded', () => {
         const statusBox = document.getElementById('statusBox');
         
         fetch('pspmobile.xlsx')
             .then(res => {
-                if (!res.ok) throw new Error("File pspmobile.xlsx tidak ditemukan di server.");
+                if (!res.ok) throw new Error("File pspmobile.xlsx belum ada di repositori.");
                 return res.arrayBuffer();
             })
             .then(ab => {
@@ -312,7 +295,7 @@
                 statusBox.style.color = "#34d399";
             })
             .catch(err => {
-                statusBox.innerHTML = "❌ Gagal memuat database: " + err.message;
+                statusBox.innerHTML = "⚠️ " + err.message;
                 statusBox.style.color = "#f87171";
             });
     });
@@ -323,13 +306,13 @@
         errorMsg.style.display = 'none';
 
         if (studentData.length === 0) {
-            errorMsg.innerText = '⚠️ Database belum siap/gagal dimuat.';
+            errorMsg.innerText = '⚠️ Database belum siap. Pastikan file pspmobile.xlsx sudah diunggah ke repositori GitHub.';
             errorMsg.style.display = 'block';
             return;
         }
 
         if (!inputVal) {
-            errorMsg.innerText = '⚠️ Masukkan NISN Anda untuk masuk.';
+            errorMsg.innerText = '⚠️ Masukkan NISN Anda terlebih dahulu.';
             errorMsg.style.display = 'block';
             return;
         }
@@ -350,7 +333,7 @@
 
             document.getElementById('resultCard').style.display = 'block';
         } else {
-            errorMsg.innerText = '❌ NISN tidak ditemukan. Pastikan 10 digit angka sudah benar.';
+            errorMsg.innerText = '❌ NISN tidak ditemukan. Pastikan NISN yang dimasukkan benar.';
             errorMsg.style.display = 'block';
         }
     }
