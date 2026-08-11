@@ -3,443 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Siswa - Blue Glossy Metallic</title>
-    <!-- Font & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- SheetJS CDN -->
+    <title>Portal Siswa - SMA NU Al Ma'ruf Kudus</title>
+    <!-- SheetJS CDN untuk membaca file Excel -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-
     <style>
         :root {
-            --bg-metallic: linear-gradient(135deg, #050b14 0%, #0a192f 40%, #0d274d 70%, #020617 100%);
-            --glass-bg: rgba(14, 30, 56, 0.65);
-            --glass-border: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(56, 189, 248, 0.2) 50%, rgba(2, 132, 199, 0.05) 100%);
-            --metallic-blue: linear-gradient(135deg, #38bdf8 0%, #0284c7 35%, #0369a1 70%, #0c4a6e 100%);
-            --metallic-cyan: linear-gradient(180deg, #e0f2fe 0%, #38bdf8 45%, #0284c7 55%, #075985 100%);
-            --gloss-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.15) 51%, rgba(255, 255, 255, 0.1) 100%);
-            --text-glow: 0 0 15px rgba(56, 189, 248, 0.6);
-            --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            --bg-gradient: linear-gradient(135deg, #0a1128 0%, #101f42 40%, #001233 100%);
+            --metal-border: linear-gradient(135deg, #60a5fa, #1d4ed8, #93c5fd, #1e40af);
+            --glossy-card: linear-gradient(145deg, rgba(30, 58, 138, 0.45) 0%, rgba(15, 23, 42, 0.75) 100%);
+            --glossy-input: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 58, 138, 0.3) 100%);
+            --btn-glossy: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+            --btn-glossy-hover: linear-gradient(180deg, #60a5fa 0%, #2563eb 50%, #1d4ed8 100%);
+            --neon-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            --metal-shine: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 70%);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
         body {
-            background: var(--bg-metallic);
-            min-height: 100vh;
+            background: var(--bg-gradient);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 24px;
-            color: #f8fafc;
+            min-height: 100vh;
+            padding: 20px;
+            color: #f1f5f9;
             overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Ambient Light Reflections */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
-            top: -100px;
-            left: -100px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(2, 132, 199, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
-            bottom: -80px;
-            right: -80px;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        /* Metallic Card Frame */
-        .card-wrapper {
-            position: relative;
-            max-width: 460px;
-            width: 100%;
-            border-radius: 24px;
-            padding: 1.5px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(56, 189, 248, 0.5) 30%, rgba(12, 74, 110, 0.8) 70%, rgba(255, 255, 255, 0.3) 100%);
-            box-shadow: var(--card-shadow);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            z-index: 10;
         }
 
         .container {
-            background: rgba(8, 21, 41, 0.85);
-            border-radius: 23px;
-            padding: 36px 28px;
             position: relative;
+            background: var(--glossy-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: var(--neon-shadow), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(147, 197, 253, 0.3);
             overflow: hidden;
+            text-align: center;
         }
 
-        /* Top Gloss Reflection */
         .container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 45%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.01) 100%);
-            border-top-left-radius: 23px;
-            border-top-right-radius: 23px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--metal-shine);
+            transform: rotate(35deg);
             pointer-events: none;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 28px;
+        .logo-container {
             position: relative;
+            margin-bottom: 20px;
+            display: inline-block;
         }
 
-        .logo-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 16px;
-            border-radius: 18px;
-            background: var(--metallic-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            color: #ffffff;
-            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .logo-container img {
+            height: 90px;
+            width: auto;
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+        }
+
+        .header {
+            margin-bottom: 30px;
         }
 
         .header h2 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             letter-spacing: 0.5px;
-            background: linear-gradient(180deg, #ffffff 30%, #93c5fd 85%, #38bdf8 100%);
+            background: linear-gradient(180deg, #ffffff 0%, #a2d2ff 60%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: var(--text-glow);
+            text-shadow: 0 2px 15px rgba(59, 130, 246, 0.4);
             margin-bottom: 6px;
         }
 
         .header p {
             color: #94a3b8;
-            font-size: 13.5px;
+            font-size: 14px;
+            letter-spacing: 0.3px;
         }
 
-        /* Upload File Panel */
-        .upload-box {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1.5px dashed rgba(56, 189, 248, 0.4);
-            border-radius: 14px;
-            padding: 14px;
-            text-align: center;
-            margin-bottom: 22px;
-            transition: all 0.3s;
-        }
-
-        .upload-box:hover {
-            border-color: #38bdf8;
-            background: rgba(56, 189, 248, 0.05);
-        }
-
-        .upload-label {
-            font-size: 12.5px;
+        .status-box {
+            font-size: 12px;
+            color: #60a5fa;
+            margin-bottom: 15px;
             font-weight: 600;
-            color: #7dd3fc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
         }
 
-        .upload-box input {
-            display: none;
-        }
-
-        /* Input Controls */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: left;
         }
 
         .form-group label {
             display: block;
-            font-size: 12.5px;
-            font-weight: 700;
+            font-size: 13px;
             color: #cbd5e1;
-            margin-bottom: 8px;
-            letter-spacing: 0.3px;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper i {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #38bdf8;
-            font-size: 16px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 13px 14px 13px 44px;
-            background: rgba(10, 25, 47, 0.7);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 12px;
-            color: #f8fafc;
-            font-size: 15px;
+            margin-bottom: 10px;
             font-weight: 600;
-            outline: none;
-            transition: all 0.25s ease;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
-        }
-
-        .form-control:focus {
-            border-color: #38bdf8;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.4);
-            background: rgba(15, 34, 64, 0.85);
-        }
-
-        /* Blue Glossy Button */
-        .btn-metallic {
-            position: relative;
-            width: 100%;
-            padding: 14px;
-            background: var(--metallic-blue);
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            overflow: hidden;
             letter-spacing: 0.5px;
-            box-shadow: 0 8px 25px rgba(2, 132, 199, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6);
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
 
-        .btn-metallic::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: var(--gloss-sheen);
-            pointer-events: none;
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            background: var(--glossy-input);
+            border: 1px solid rgba(147, 197, 253, 0.3);
+            border-radius: 12px;
+            font-size: 16px;
+            color: #ffffff;
+            outline: none;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.7);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #60a5fa;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.7), 0 0 15px rgba(96, 165, 250, 0.6);
+        }
+
+        .btn-metallic {
+            width: 100%;
+            padding: 16px;
+            background: var(--btn-glossy);
+            border: 1px solid #93c5fd;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(29, 78, 216, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+            transition: all 0.25s ease;
         }
 
         .btn-metallic:hover {
+            background: var(--btn-glossy-hover);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.8);
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.8);
         }
 
-        .btn-metallic:active {
-            transform: translateY(1px);
-        }
-
-        /* Result Panel Glass & Chrome */
-        .result-panel {
-            display: none;
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .glass-box {
-            background: rgba(15, 31, 56, 0.6);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 16px;
-            padding: 20px;
+        .alert-error {
+            background: rgba(220, 38, 38, 0.3);
+            border: 1px solid #f87171;
+            color: #fca5a5;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 14px;
             margin-bottom: 20px;
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            display: none;
+            backdrop-filter: blur(5px);
+            font-weight: 600;
         }
 
-        .data-row {
-            display: flex;
-            flex-direction: column;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+        .result-card {
+            display: none;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+            text-align: left;
         }
 
-        .data-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        .result-item {
+            margin-bottom: 16px;
         }
 
-        .data-label {
+        .result-label {
             font-size: 11px;
+            color: #94a3b8;
             text-transform: uppercase;
             font-weight: 700;
-            color: #7dd3fc;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             margin-bottom: 4px;
         }
 
-        .data-value {
-            font-size: 16px;
+        .result-value {
+            font-size: 17px;
+            color: #f8fafc;
             font-weight: 700;
-            color: #ffffff;
             word-break: break-all;
         }
 
         .badge-kelas {
             display: inline-block;
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 3px 12px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            border: 1px solid #60a5fa;
+            color: #ffffff;
+            padding: 5px 16px;
             border-radius: 20px;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: #ffffff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-secondary-gloss {
-            background: rgba(30, 58, 95, 0.5);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: #cbd5e1;
-            padding: 12px;
-            border-radius: 12px;
             font-size: 14px;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.2s;
+            font-weight: 800;
+            box-shadow: 0 3px 10px rgba(59, 130, 246, 0.5);
+            margin-top: 5px;
         }
 
-        .btn-secondary-gloss:hover {
-            background: rgba(45, 85, 138, 0.6);
-            color: #ffffff;
-            border-color: #38bdf8;
+        .btn-logout {
+            margin-top: 25px;
+            background: linear-gradient(180deg, #475569 0%, #1e293b 100%);
+            border: 1px solid #94a3b8;
         }
 
-        .alert-metallic {
-            display: none;
-            background: rgba(220, 38, 38, 0.15);
-            border: 1px solid rgba(248, 113, 113, 0.4);
-            color: #fca5a5;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 13px;
-            margin-bottom: 18px;
-            align-items: center;
-            gap: 10px;
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.3), transparent);
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
 
-<div class="card-wrapper">
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo-icon">
-                <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h2>PORTAL SISWA</h2>
-            <p>Akses Akun & Data Pembelajaran</p>
+<div class="container">
+    <div class="logo-container">
+        <img src="https://i.ibb.co/5R4Y4Y0/logo-smanu-kudus.png" alt="Logo SMA NU Al Ma'ruf Kudus">
+    </div>
+
+    <div class="header">
+        <h2>Portal Siswa</h2>
+        <p>SMA NU Al Ma'ruf Kudus</p>
+    </div>
+
+    <div id="statusBox" class="status-box">⏳ Memuat database sistem...</div>
+
+    <!-- Form Login -->
+    <div id="loginForm">
+        <div id="errorMsg" class="alert-error">NISN tidak ditemukan.</div>
+        
+        <div class="form-group">
+            <label for="nisnInput">Masukkan NISN Siswa</label>
+            <input type="text" id="nisnInput" placeholder="Contoh: 0085649162" autocomplete="off" maxlength="10">
         </div>
 
-        <!-- Upload File Excel -->
-        <div class="upload-box" id="uploadSection">
-            <label class="upload-label" for="excelFile">
-                <i class="fa-solid fa-file-excel" style="font-size: 18px;"></i>
-                <span id="uploadText">Unggah Database (pspmobile.xlsx)</span>
-            </label>
-            <input type="file" id="excelFile" accept=".xlsx, .xls">
+        <button class="btn-metallic" onclick="login()">Masuk Sekarang</button>
+    </div>
+
+    <!-- Hasil Info Akun Siswa -->
+    <div id="resultCard" class="result-card">
+        <div class="result-item">
+            <div class="result-label">Nama Lengkap Siswa</div>
+            <div class="result-value" id="resNama">-</div>
+        </div>
+        <div class="divider"></div>
+        <div class="result-item">
+            <div class="result-label">Kelas</div>
+            <div class="result-value"><span class="badge-kelas" id="resKelas">-</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="result-item">
+            <div class="result-label">Username Login</div>
+            <div class="result-value" style="color: #60a5fa; font-family: monospace;" id="resUsername">-</div>
+        </div>
+        <div class="divider"></div>
+        <div class="result-item">
+            <div class="result-label">Password Login (NISN)</div>
+            <div class="result-value" style="color: #93c5fd; font-family: monospace;" id="resPassword">-</div>
         </div>
 
-        <!-- Login Form -->
-        <div id="loginForm">
-            <div id="errorMsg" class="alert-metallic">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                <span id="errorText">NISN tidak ditemukan.</span>
-            </div>
-
-            <div class="form-group">
-                <label for="nisnInput">NOMOR INDUK SISWA NASIONAL (NISN)</label>
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-key"></i>
-                    <input type="text" id="nisnInput" class="form-control" placeholder="Masukkan NISN sebagai password..." autocomplete="off">
-                </div>
-            </div>
-
-            <button class="btn-metallic" onclick="login()">
-                <i class="fa-solid fa-arrow-right-to-bracket"></i> Masuk Sekarang
-            </button>
-        </div>
-
-        <!-- Data Result Card -->
-        <div id="resultCard" class="result-panel">
-            <div class="glass-box">
-                <div class="data-row">
-                    <span class="data-label"><i class="fa-solid fa-user me-1"></i> Nama Lengkap</span>
-                    <span class="data-value" id="resNama">-</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label"><i class="fa-solid fa-layer-group me-1"></i> Kelas</span>
-                    <div><span class="badge-kelas" id="resKelas">-</span></div>
-                </div>
-                <div class="data-row">
-                    <span class="data-label"><i class="fa-solid fa-id-badge me-1"></i> Username</span>
-                    <span class="data-value" style="color: #38bdf8; font-family: monospace; font-size: 15px;" id="resUsername">-</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label"><i class="fa-solid fa-lock me-1"></i> Password</span>
-                    <span class="data-value" style="color: #93c5fd; font-family: monospace; font-size: 15px;" id="resPassword">-</span>
-                </div>
-            </div>
-
-            <button class="btn-secondary-gloss" onclick="logout()">
-                <i class="fa-solid fa-arrow-left"></i> Kembali / Cek Lainnya
-            </button>
-        </div>
+        <button class="btn-metallic btn-logout" onclick="logout()">Keluar / Cek Lain</button>
     </div>
 </div>
 
 <script>
     let studentData = [];
 
-    // Unggah & Parsing Excel
-    document.getElementById('excelFile').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        document.getElementById('uploadText').innerText = "Memproses: " + file.name + "...";
-
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-            try {
-                const data = new Uint8Array(evt.target.result);
-                const workbook = XLSX.read(data, {type: 'array'});
+    // Mengambil file pspmobile.xlsx secara otomatis dari repositori
+    window.addEventListener('DOMContentLoaded', () => {
+        const statusBox = document.getElementById('statusBox');
+        
+        fetch('pspmobile.xlsx')
+            .then(res => {
+                if (!res.ok) throw new Error("File pspmobile.xlsx tidak ditemukan di server.");
+                return res.arrayBuffer();
+            })
+            .then(ab => {
+                const workbook = XLSX.read(new Uint8Array(ab), {type: 'array'});
                 const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
                 const jsonData = XLSX.utils.sheet_to_json(firstSheet);
 
@@ -448,49 +300,37 @@
                     let nisn = rawUsername.replace('smanuamk.', '');
                     
                     return {
-                        nama: row['Nama'] || '',
-                        kelas: row['Tag'] || '',
+                        nama: row['Nama'] || 'Tanpa Nama',
+                        kelas: row['Tag'] || '-',
                         username: rawUsername,
                         password: nisn,
                         nisn: nisn
                     };
                 }).filter(item => item.nisn !== '');
 
-                document.getElementById('uploadSection').style.borderColor = "#10b981";
-                document.getElementById('uploadText').innerHTML = `<i class="fa-solid fa-check" style="color:#10b981"></i> ${studentData.length} Siswa Siap`;
-                
-                setTimeout(() => {
-                    document.getElementById('uploadSection').style.display = 'none';
-                }, 1200);
-
-            } catch (err) {
-                showError("Gagal membaca file Excel. Pastikan format sesuai.");
-            }
-        };
-        reader.readAsArrayBuffer(file);
+                statusBox.innerHTML = "✅ Database Siap (" + studentData.length + " Siswa Loaded)";
+                statusBox.style.color = "#34d399";
+            })
+            .catch(err => {
+                statusBox.innerHTML = "❌ Gagal memuat database: " + err.message;
+                statusBox.style.color = "#f87171";
+            });
     });
 
-    function showError(msg) {
-        const errorBox = document.getElementById('errorMsg');
-        document.getElementById('errorText').innerText = msg;
-        errorBox.style.display = 'flex';
-    }
-
-    function hideError() {
-        document.getElementById('errorMsg').style.display = 'none';
-    }
-
     function login() {
-        hideError();
         const inputVal = document.getElementById('nisnInput').value.trim();
+        const errorMsg = document.getElementById('errorMsg');
+        errorMsg.style.display = 'none';
 
-        if (!inputVal) {
-            showError("Silakan masukkan nomor NISN Anda.");
+        if (studentData.length === 0) {
+            errorMsg.innerText = '⚠️ Database belum siap/gagal dimuat.';
+            errorMsg.style.display = 'block';
             return;
         }
 
-        if (studentData.length === 0) {
-            showError("Unggah file pspmobile.xlsx terlebih dahulu.");
+        if (!inputVal) {
+            errorMsg.innerText = '⚠️ Masukkan NISN Anda untuk masuk.';
+            errorMsg.style.display = 'block';
             return;
         }
 
@@ -501,29 +341,26 @@
 
         if (student) {
             document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('statusBox').style.display = 'none';
+            
             document.getElementById('resNama').innerText = student.nama;
             document.getElementById('resKelas').innerText = student.kelas;
             document.getElementById('resUsername').innerText = student.username;
             document.getElementById('resPassword').innerText = student.password;
+
             document.getElementById('resultCard').style.display = 'block';
         } else {
-            showError("NISN tidak terdaftar. Periksa kembali nomor yang dimasukkan.");
+            errorMsg.innerText = '❌ NISN tidak ditemukan. Pastikan 10 digit angka sudah benar.';
+            errorMsg.style.display = 'block';
         }
     }
 
     function logout() {
         document.getElementById('resultCard').style.display = 'none';
         document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('statusBox').style.display = 'block';
         document.getElementById('nisnInput').value = '';
-        hideError();
     }
-
-    // Eksekusi Enter pada input
-    document.getElementById('nisnInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            login();
-        }
-    });
 </script>
 
 </body>
