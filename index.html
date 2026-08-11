@@ -66,9 +66,10 @@
         }
 
         .logo-container img {
-            height: 85px;
+            height: 110px;
             width: auto;
-            filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+            object-fit: contain;
         }
 
         .header h2 {
@@ -210,9 +211,9 @@
 
 <div class="container">
     <div class="logo-container">
-        <!-- Logo Sekolah dengan fallback otomatis -->
-        <img src="https://i.ibb.co/5R4Y4Y0/logo-smanu-kudus.png" 
-             onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg';" 
+        <!-- Menggunakan logo lokal logo.png dari repo, dengan fallback ke URL gambar Google Drive/Public -->
+        <img src="logo.jpg" 
+             onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1_S-v8Cky4bNpxwpx96yM_k57-V2w_E-M';" 
              alt="Logo SMA NU Al Ma'ruf Kudus">
     </div>
 
